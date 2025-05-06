@@ -5,24 +5,36 @@
 // This file contains the JS functions for index.html
 
 function calculateNumber() {
-  let positiveIntegerNumber1 = parseInt(document.getElementById("positive-integer-number-1").value);
-  let positiveIntegerNumber2 = parseInt(document.getElementById("positive-integer-number-2").value);
+  const positiveIntegerNumber1 = parseInt(
+    document.getElementById("positive-integer-number-1").value
+  )
+  const positiveIntegerNumber2 = parseInt(
+    document.getElementById("positive-integer-number-2").value
+  )
 
-  // Input validation
-  if (isNaN(positiveIntegerNumber1) || isNaN(positiveIntegerNumber2) || positiveIntegerNumber1 < 0 || positiveIntegerNumber2 < 0) {
-    document.getElementById("result-output").innerHTML = "Please enter valid positive integers.";
-    return;
+  if (
+    !(Number.isInteger(positiveIntegerNumber1) && Number.isInteger(positiveIntegerNumber2) && positiveIntegerNumber1 > 0 && positiveIntegerNumber2 > 0)
+  ) {
+    document.getElementById("result-output").innerHTML =
+      "Please enter valid positive integers."
+    return
   }
 
-  let result = 0;
-  let counter = 0;
+  let result = 0
+  let counter = 0
+  let additionString = ""
 
   while (counter < positiveIntegerNumber2) {
-    result += positiveIntegerNumber1;
-    counter++;
+    result += positiveIntegerNumber1
+    additionString += positiveIntegerNumber1
+    if (counter < positiveIntegerNumber2 - 1) {
+      additionString += " + "
+    }
+    counter++
   }
 
-  // Show result in the webpage
-  document.getElementById("result-output").innerHTML =
-    `${positiveIntegerNumber1} × ${positiveIntegerNumber2} = <strong>${result}</strong>`;
+  document.getElementById(
+    "result-output"
+  ).innerHTML = `${additionString} = <strong>${result}</strong>`
 }
+
